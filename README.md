@@ -7,3 +7,27 @@ Motivation: Drug-target interaction (DTI) prediction is a relevant but challengi
 Results: In this work, we introduce GeNNius (Graph Embedding Neural Network Interaction Uncovering System), a Graph Neural Network (GNN) based method that outperforms state-of-the-art models in terms of both accuracy and time efficiency. Next, we leverage the inductive capability of our developed GNN to train and test on different DTI networks, showing that this methodology could potentially improve the DTI prediction learning process and reduce variability on new data. Finally, DTI embeddings learned by GeNNius during training revealed that protein families group together in a lower dimensional setting. This shows that GeNNius seems to learn high-level protein family information through a non-trivial complex combination of the input features, which may promote the reliability on machine learning approaches for guiding experimental validations.
 
 ![The model architecture](GeNNius.png)
+
+
+# Run the model
+
+To run the following code selecting one dataset from {DrugBank, BioSNAP, BindingDB, DAVIS, E, IC, GPCR, NR}.
+```
+python3 Code/main.py -d <dataset> -e <embedding_dimension>
+```
+
+
+# Build Docker
+
+### Create image
+```
+docker build -t genniusdoc .
+```
+
+
+### Run container
+
+```
+docker run -dt --gpus all --name gennius_tests genniusdoc
+```
+-v flag may be added to work in the same folder (-v your_path/GeNNius/:/wdir/)
