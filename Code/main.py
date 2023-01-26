@@ -9,9 +9,7 @@ import torch_geometric.transforms as T
 from sklearn.metrics import roc_auc_score, average_precision_score
 
 from GeNNius import Model, EarlyStopper, shuffle_label_data
-from visualization_tools import plot_auc
-
-import matplotlib.pyplot as plt
+from utils import plot_auc
 
 
 
