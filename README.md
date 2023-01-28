@@ -44,7 +44,7 @@ To run the following code selecting one dataset from {DrugBank, BioSNAP, Binding
 python3 Code/main.py -d <dataset> -e <embedding_dimension>
 ```
 
-## Testing generalization capabilities of GeNNius (updating section...)
+## Testing generalization capabilities of GeNNius
 
 First, need preprocessing of all datasets removing edges(with data_preprocessing_removing_repeated_edges.py for each 2 datasets).
 
