@@ -1,12 +1,13 @@
+import os
+import numpy as np
 import requests
 from collections import Counter
 from rdkit import Chem
 from tqdm import tqdm
 from time import sleep
 import logging
-import os
 import matplotlib.pyplot as plt
-
+import seaborn as sns
 
 
 def seq2rat(sequence):
@@ -106,3 +107,14 @@ def plot_auc(DATABASE, OUTPUT_PATH, results, hidden_channels, evtype):
     plt.savefig(os.path.join(OUTPUT_PATH, f'ev_{evtype}_{DATABASE.lower()}.png'), dpi=300)
 
 
+
+def plot_heatmap(df,df_std, cmap='Reds'):
+    # Create an array to annotate the heatmap
+    labels = ["{0:.4f}\n$\pm$\n{1:.4f}".format(symb,value) for symb, value in zip(df.values.flatten(), df_std.values.flatten())]
+    labels = np.asarray(labels).reshape(df.shape)
+    plt.clf()
+    fig = plt.figure()
+    fig.set_size_inches(10, 10)
+    ax = sns.heatmap(df, annot=labels, fmt="", vmin=0.50, vmax=1.0, cmap=cmap)
+    ax.set(xlabel="Trained", ylabel="Evaluated")
+    ax.xaxis.tick_top()

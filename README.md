@@ -9,13 +9,6 @@ GeNNius: An ultrafast drug-target interaction inference method based on graph ne
 ![The model architecture](GeNNius.png)
 
 
-## Run the model
-
-To run the following code selecting one dataset from {DrugBank, BioSNAP, BindingDB, DAVIS, E, IC, GPCR, NR}.
-```
-python3 Code/main.py -d <dataset> -e <embedding_dimension>
-```
-
 
 ## Build Docker
 
@@ -23,7 +16,6 @@ python3 Code/main.py -d <dataset> -e <embedding_dimension>
 ```
 docker build -t <image_name> .
 ```
-
 
 ### Run container
 
@@ -33,6 +25,8 @@ docker run -dt --gpus all --name <container_name> <image_name>
 
 -v flag may be added to work in the same folder (-v your_path/GeNNius/:/wdir/)
 
+
+
 ## Preprocessing
 
 Using tsv files in PubChem and Uniprot Identifiers (with header ["Drug", "Protein"]) 
@@ -41,3 +35,28 @@ Run the following to generate the HeteroData object, with node features from RDK
 ```
 python3 Code/data_preprocessing.py -d drugbank
 ```
+
+
+## Run the model
+
+To run the following code selecting one dataset from {DrugBank, BioSNAP, BindingDB, DAVIS, E, IC, GPCR, NR}.
+```
+python3 Code/main.py -d <dataset> -e <embedding_dimension>
+```
+
+## Testing generalization capabilities of GeNNius (updating section...)
+
+First, need preprocessing of all datasets removing edges(with data_preprocessing_removing_repeated_edges.py for each 2 datasets).
+
+All can be togheter executed by launching:
+```
+python3 Code/exec_all_preproc_repedges_datasets.py (change this name!!!)
+```
+
+Once all is preprocessed need to run:
+```
+Code/execute4generalization.py 
+```
+
+This code generates a heatmap similar to the one presented in the article.
+
